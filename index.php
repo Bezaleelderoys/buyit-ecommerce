@@ -1,3 +1,8 @@
+<?php
+require "conf/conn.php";
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,12 +41,19 @@
             />
           </form>
           <span>
-            <a href="login.php"
-              ><i class="bi bi-person text-2xl text-lime-600"></i
-            ></a>
-            <a href="login.php"
-              ><i class="bi bi-cart text-2xl ml-4 text-lime-600"></i
-            ></a>
+          <?php
+            if(isset($_SESSION["login"]) && $_SESSION["login"] == true){
+              echo "<a href='myprofile.php'><i class='bi bi-person text-2xl text-lime-600'></i
+              ></a><a href='cart.php'
+              ><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i
+            ></a>";
+            }else{
+              echo "<a href='login.php'><i class='bi bi-person text-2xl text-lime-600'></i
+              ></a> <a href='login.php'
+              ><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i
+            ></a>";
+            }
+            ?>
           </span>
         </div>
       </div>

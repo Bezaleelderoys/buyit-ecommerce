@@ -14,10 +14,7 @@ if (isset($_POST["login"])){
     if($password == $data["password"]){
       $_SESSION["login"] = true;
       $_SESSION["username"] = $data["username"];
-      echo "<script>
-        alert('Login Berhasil')
-      </script>";
-      header("Location: loggedin/index.php");
+      header("Location: index.php");
     }
   }else{
     echo "<script> alert('User tidak ditemukan') </script>";
