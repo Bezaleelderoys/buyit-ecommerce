@@ -14,6 +14,7 @@ if (isset($_POST["login"])){
     if($password == $data["password"]){
       $_SESSION["login"] = true;
       $_SESSION["username"] = $data["username"];
+      $_SESSION["userid"] = $data["userid"];
       header("Location: index.php");
     }
   }else{

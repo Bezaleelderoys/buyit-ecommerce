@@ -1,3 +1,17 @@
+<?php
+require "conf/conn.php";
+
+if(isset($_GET['userid'])){
+  $userid = $_GET['userid'];
+  $query = mysqli_query($conn, "SELECT * FROM usertb WHERE userid = $userid");
+  $data = mysqli_fetch_array($query);
+
+  $nama = $data['username'];
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,12 +50,15 @@
             />
           </form>
           <span>
-            <a href="profile.php"
-              ><i class="bi bi-person text-2xl text-lime-600"></i
-            ></a>
-            <a href="cart.php"
-              ><i class="bi bi-cart text-2xl ml-4 text-lime-600"></i
-            ></a>
+          <?php
+           if(isset($_SESSION["login"])){
+            echo "<a href='myprofile.php'><i class='bi bi-person text-2xl text-lime-600'></i></a>
+                  <a href='cart.php'><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i></a>";
+          }else{
+            echo "<a href='login.php'><i class='bi bi-person text-2xl text-lime-600'></i></a> 
+                  <a href='login.php'><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i></a>";
+          }
+          ?>
           </span>
         </div>
       </div>
@@ -75,7 +92,7 @@
               />
             </div>
             <div class="ml-4">
-              <h1 class="text-2xl">username</h1>
+              <h1 class="text-2xl"><?php echo $nama?></h1>
               <p>DENPASAR BARAT, BALI</p>
               <div class="flex gap-5">
                 <p><span>0</span> pengikut</p>
@@ -98,7 +115,33 @@
             Barang oleh pengguna
           </h1>
           <div class="min-h-[60vh] flex items-center justify-center">
-            <h1>Tidak ada barang</h1>
+          <?php
+            
+            $check = mysqli_query($conn, "SELECT * FROM itemtb WHERE owner_name = '$nama'"); 
+
+            if(mysqli_num_rows($check) > 0){
+              echo "<div class='grid grid-cols-5 gap-4 py-4'>";
+              while($data = mysqli_fetch_array($check)){
+                echo "<div class='border border-black'>";
+                echo "<a href='item.php?id=".$data['item_id']."'>"; 
+                echo "<div class='border border-slate-400'>";
+                echo "<img src='upload/".$data['image_path']."' class='w-full h-full object-fill'/>";
+                echo "</div>";
+                echo "<div class='p-2'>";
+                echo "<h1>".$data["item_name"]."</h1>";
+                echo "<p>Rp ".$data["price"]."</p>";
+                echo  "<p><i class='bi bi-geo-alt-fill'></i> DENPASAR BARAT, BALI</p>";
+                echo  "</div>";
+                echo "</a>";
+                echo "</div>";
+              }
+              echo "</div>";
+            }else{
+              echo "<div class='min-h-[60vh] flex items-center justify-center'>";
+              echo "<h1>Tidak ada barang</h1>";
+              echo "</div>";
+            }
+            ?>
           </div>
         </div>
       </div>

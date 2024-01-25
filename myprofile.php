@@ -1,5 +1,8 @@
 <?php
 require "session.php";
+require "conf/conn.php";
+
+$user = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +111,34 @@ require "session.php";
             Barang oleh pengguna
           </h1>
           <div class="min-h-[60vh] flex items-center justify-center">
-            <h1>Tidak ada barang</h1>
+          
+            <?php
+            
+            $check = mysqli_query($conn, "SELECT * FROM itemtb WHERE owner_name = '$user'"); 
+
+            if(mysqli_num_rows($check) > 0){
+              echo "<div class='grid grid-cols-5 gap-4 py-4'>";
+              while($data = mysqli_fetch_array($check)){
+                echo "<div class='border border-black'>";
+                echo "<a href='item.php?id=".$data['item_id']."'>"; 
+                echo "<div class='border border-slate-400'>";
+                echo "<img src='upload/".$data['image_path']."' class='w-full h-full object-fill'/>";
+                echo "</div>";
+                echo "<div class='p-2'>";
+                echo "<h1>".$data["item_name"]."</h1>";
+                echo "<p>Rp ".$data["price"]."</p>";
+                echo  "<p><i class='bi bi-geo-alt-fill'></i> DENPASAR BARAT, BALI</p>";
+                echo  "</div>";
+                echo "</a>";
+                echo "</div>";
+              }
+              echo "</div>";
+            }else{
+              echo "<div class='min-h-[60vh] flex items-center justify-center'>";
+              echo "<h1>Tidak ada barang</h1>";
+              echo "</div>";
+            }
+            ?>
           </div>
         </div>
       </div>

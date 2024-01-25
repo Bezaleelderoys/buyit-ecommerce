@@ -1,6 +1,28 @@
 <?php
 require "session.php";
+require "conf/conn.php";
 
+if(isset($_POST["upload"])){
+
+  $uploader = $_SESSION["username"];
+  $uploaderID = $_SESSION["userid"];
+
+  $nama = $_POST["nama"];
+  $deskripsi = $_POST["deskripsi"];
+  $harga = $_POST["harga"];
+  $kategori = $_POST["kategori"];
+  $gambar = $_FILES["gambar"]["name"];
+  $folder = "upload/".$gambar;
+  $tempname = $_FILES["gambar"]["tmp_name"];  
+
+  mysqli_query($conn, "INSERT INTO itemtb VALUES ('','$nama','$deskripsi','$harga','$kategori','$gambar','$uploaderID','$uploader')");
+  move_uploaded_file($tempname,$folder);
+
+  header('Location: myprofile.php');
+  echo "<script>
+    alert('Barang berhasil di Upload!')
+  </script>";
+}
 
 ?>
 
@@ -72,32 +94,31 @@ require "session.php";
     <div>
       <div class="container px-2 mx-auto py-6">
         <h1 class="text-3xl">UPLOAD BARANG</h1>
-        <form class="flex flex-col" action="">
+        <form class="flex flex-col" action="upload.php" method="post" enctype="multipart/form-data">
           <label>Nama barang</label>
-          <input type="text" class="border border-slate-400" />
+          <input type="text" name="nama" class="border border-slate-400" />
           <label class="mt-6">Deskripsi barang</label>
           <textarea
-            name=""
+            name="deskripsi"
             id=""
             cols="30"
             rows="10"
             class="border border-slate-400"
           ></textarea>
           <label class="mt-6">Harga</label>
-          <input type="text" class="border border-slate-400" name="" id="" />
+          <input type="text" class="border border-slate-400" name="harga" id="" />
           <label class="mt-6">Kategori barang</label>
-          <select class="border border-slate-400" name="" id="">
-            <option value="">Kategori</option>
-            <option value="">========</option>
-            <option value="">Keperluan Rumah</option>
-            <option value="">Dapur</option>
-            <option value="">Pakaian</option>
-            <option value="">Teknologi</option>
-            <option value="">Makanan</option>
+          <select class="border border-slate-400" name="kategori" id="">
+            <option>Keperluan Rumah</option>
+            <option>Dapur</option>
+            <option>Pakaian</option>
+            <option>Teknologi</option>
+            <option>Makanan</option>
           </select>
           <label class="mt-6">Gambar</label>
-          <input type="file" name="" id="" />
+          <input type="file" name="gambar" id="" />
           <input
+            name="upload"
             type="submit"
             value="Upload"
             class="bg-lime-600 text-white cursor-pointer mt-6 py-2"

@@ -1,3 +1,22 @@
+<?php
+require "conf/conn.php";
+
+session_start();
+if(isset($_GET['id'])){
+  $id = $_GET['id'];
+  $query = mysqli_query($conn, "SELECT * FROM itemtb WHERE item_id = $id");
+  $data = mysqli_fetch_array($query);
+
+  $nama = $data['item_name'];
+  $deskripsi = $data['description'];
+  $price = $data['price'];
+  $gambar = $data['image_path'];
+  $uploader = $data['owner_name'];
+  $uploaderID = $data['owner_id'];
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,10 +55,22 @@
             />
           </form>
           <span>
-            <a href="login.php"
+            <a href="<?php
+              if(isset($_SESSION['login'])){
+                echo "myprofile.php";
+              }else{
+                echo "login.php"; 
+              }
+            ?>"
               ><i class="bi bi-person text-2xl text-lime-600"></i
             ></a>
-            <a href="login.php"
+            <a href="<?php
+              if(isset($_SESSION['login'])){
+                echo "cart.php";
+              }else{
+                echo "myprofile.php"; 
+              }
+            ?>"
               ><i class="bi bi-cart text-2xl ml-4 text-lime-600"></i
             ></a>
           </span>
@@ -69,27 +100,26 @@
           <!-- Image Div -->
           <div class="border border-slate-600 w-80 h-80 mr-20">
             <img
-              src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
+              src="upload/<?php echo $gambar?>"
               alt=""
               class="w-full h-96 object-contain"
             />
           </div>
           <!-- Info Div  -->
           <div>
-            <h1 class="text-3xl font-medium">Kabel VGA Basdsa</h1>
-            <p class="text-2xl">Rp 7000</p>
+            <h1 class="text-3xl font-medium"><?php echo $nama?></h1>
+            <p class="text-2xl">Rp <?php echo $price?></p>
+            <p><a href="profile.php?userid=<?php echo $uploaderID?>"><i class="bi bi-person"></i> <?php echo $uploader ?></a></p>
             <p>
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
               ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
               ><i class="bi bi-star-fill"></i> 4.4 (12)
             </p>
             <p>DENPASAR BARAT, BALI</p>
-            <div class="border border-slate-700 w-[30rem] my-2">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-                ipsam officiis earum hic mollitia dicta numquam dolore adipisci
-                amet aspernatur! Sunt fugit quidem exercitationem!
-              </p>
+            <div class="border border-slate-700 w-full h-44 my-2 p-2 overflow-scroll">
+              <pre class="font-[Poppins]">
+                <?php echo $deskripsi?>
+              </pre>
             </div>
             <!-- Button Box -->
             <div>

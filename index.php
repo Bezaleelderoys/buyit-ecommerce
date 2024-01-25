@@ -42,16 +42,12 @@ session_start();
           </form>
           <span>
           <?php
-            if(isset($_SESSION["login"]) && $_SESSION["login"] == true){
-              echo "<a href='myprofile.php'><i class='bi bi-person text-2xl text-lime-600'></i
-              ></a><a href='cart.php'
-              ><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i
-            ></a>";
+            if(isset($_SESSION["login"])){
+              echo "<a href='myprofile.php'><i class='bi bi-person text-2xl text-lime-600'></i></a>
+                    <a href='cart.php'><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i></a>";
             }else{
-              echo "<a href='login.php'><i class='bi bi-person text-2xl text-lime-600'></i
-              ></a> <a href='login.php'
-              ><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i
-            ></a>";
+              echo "<a href='login.php'><i class='bi bi-person text-2xl text-lime-600'></i></a> 
+                    <a href='login.php'><i class='bi bi-cart text-2xl ml-4 text-lime-600'></i></a>";
             }
             ?>
           </span>
@@ -134,198 +130,33 @@ session_start();
           <!-- Card End -->
           <!-- Items Start -->
 
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-              </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4(12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
+          <?php
+           
+           $query = mysqli_query($conn, "SELECT * FROM itemtb");
 
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
+           while($data = mysqli_fetch_array($query)){
+            
+            ?>
+              <div class='border border-black'>
+                <a href='item.php?id=<?php echo $data['item_id']?>'>
+                  <div class='border border-slate-400'>
+                    <img src="upload/<?php echo $data["image_path"]?>" class="object-cover w-full h-full"/>
+                  </div>
+                  <div class='p-2'>
+                    <h1><?php echo $data["item_name"]?></h1>
+                    <p>Rp <?php echo $data["price"]?></p>
+                    <p><i class="bi bi-person"></i> <?php echo $data["owner_name"]?></p>
+                    <p>
+                      <i class='bi bi-star-fill'></i><i class='bi bi-star-fill'></i
+                      ><i class='bi bi-star-fill'></i><i class='bi bi-star-fill'></i
+                      ><i class='bi bi-star-fill'></i>
+                      4.4(12)
+                    </p>
+                    <p><i class='bi bi-geo-alt-fill'></i> DENPASAR BARAT, BALI</p>
+                  </div>
+                </a>
               </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4(12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
-
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-              </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4(12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
-
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-              </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4 (12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
-
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-              </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4(12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
-
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-              </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4(12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
-
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-              </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4(12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
-
-          <!-- Card Start -->
-          <div class="border border-black">
-            <a href="#">
-              <div class="border border-slate-400">
-                <img
-                  src="https://th.bing.com/th/id/OIP.TPzJQ_W8LsccrU5iik-MswHaFL?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-              </div>
-              <div class="p-2">
-                <h1>Kabel VGA Basdsa</h1>
-                <p>Rp 7000</p>
-                <p>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
-                  ><i class="bi bi-star-fill"></i>
-                  4.4(12)
-                </p>
-                <p><i class="bi bi-geo-alt-fill"></i> DENPASAR BARAT, BALI</p>
-              </div>
-            </a>
-          </div>
-          <!-- Card End -->
-        </div>
+            <?php }?>
         <!-- Items End -->
       </div>
     </div>
