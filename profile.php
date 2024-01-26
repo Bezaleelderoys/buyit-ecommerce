@@ -1,6 +1,6 @@
 <?php
 require "conf/conn.php";
-
+session_start();
 if(isset($_GET['userid'])){
   $userid = $_GET['userid'];
   $query = mysqli_query($conn, "SELECT * FROM usertb WHERE userid = $userid");
