@@ -68,7 +68,7 @@ if(isset($_GET['id'])){
               if(isset($_SESSION['login'])){
                 echo "cart.php";
               }else{
-                echo "myprofile.php"; 
+                echo "login.php"; 
               }
             ?>"
               ><i class="bi bi-cart text-2xl ml-4 text-lime-600"></i
