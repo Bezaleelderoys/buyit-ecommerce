@@ -140,7 +140,7 @@ session_start();
               <div class='border border-black'>
                 <a href='item.php?id=<?php echo $data['item_id']?>'>
                   <div class='border border-slate-400'>
-                    <img src="upload/<?php echo $data["image_path"]?>" class="object-cover w-full h-full"/>
+                    <img src="upload/<?php echo $data["image_path"]?>" class="object-cover w-full h-[15rem]"/>
                   </div>
                   <div class='p-2'>
                     <h1><?php echo $data["item_name"]?></h1>

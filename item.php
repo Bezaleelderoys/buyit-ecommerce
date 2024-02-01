@@ -102,14 +102,23 @@ if(isset($_GET['id'])){
             <img
               src="upload/<?php echo $gambar?>"
               alt=""
-              class="w-full h-96 object-contain"
+              class="w-80 aspect-square"
             />
           </div>
           <!-- Info Div  -->
           <div>
             <h1 class="text-3xl font-medium"><?php echo $nama?></h1>
             <p class="text-2xl">Rp <?php echo $price?></p>
-            <p><a href="profile.php?userid=<?php echo $uploaderID?>"><i class="bi bi-person"></i> <?php echo $uploader ?></a></p>
+            <p>
+              <?php
+              if($_SESSION['username'] == $uploader){
+                echo "<a href='myprofile.php'><i class='bi bi-person'></i> ".$uploader."</a>";
+              }else{
+                echo "<a href='profile.php?userid=".$uploaderID."'><i class='bi bi-person'></i> ".$uploader."</a>";
+              }
+
+              ?>
+            </p>
             <p>
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
               ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
