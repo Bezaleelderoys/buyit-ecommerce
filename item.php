@@ -111,8 +111,12 @@ if(isset($_GET['id'])){
             <p class="text-2xl">Rp <?php echo $price?></p>
             <p>
               <?php
-              if($_SESSION['username'] == $uploader){
+              if(isset($_SESSION['login'])){
+                if($_SESSION['username'] == $uploader){
                 echo "<a href='myprofile.php'><i class='bi bi-person'></i> ".$uploader."</a>";
+                }else{
+                  echo "<a href='profile.php?userid=".$uploaderID."'><i class='bi bi-person'></i> ".$uploader."</a>";
+                }
               }else{
                 echo "<a href='profile.php?userid=".$uploaderID."'><i class='bi bi-person'></i> ".$uploader."</a>";
               }

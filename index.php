@@ -143,7 +143,7 @@ session_start();
                     <img src="upload/<?php echo $data["image_path"]?>" class="object-cover w-full h-[15rem]"/>
                   </div>
                   <div class='p-2'>
-                    <h1><?php echo $data["item_name"]?></h1>
+                    <h1 class="h-[3rem] overflow-hidden"><?php echo $data["item_name"]?></h1>
                     <p>Rp <?php echo $data["price"]?></p>
                     <p><i class="bi bi-person"></i> <?php echo $data["owner_name"]?></p>
                     <p>
