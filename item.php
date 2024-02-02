@@ -129,7 +129,7 @@ if(isset($_GET['id'])){
               ><i class="bi bi-star-fill"></i> 4.4 (12)
             </p>
             <p>DENPASAR BARAT, BALI</p>
-            <div class="border border-slate-700 w-full h-44 my-2 p-2 overflow-scroll">
+            <div class="border border-slate-700 w-[800px] h-44 my-2 p-2 overflow-scroll">
               <pre class="font-[Poppins]">
                 <?php echo $deskripsi?>
               </pre>
